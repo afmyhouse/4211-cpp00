@@ -6,7 +6,7 @@
 /*   By: antoda-s <antoda-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 19:56:57 by antoda-s          #+#    #+#             */
-/*   Updated: 2024/04/19 15:20:20 by antoda-s         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:59:20 by antoda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void PhoneBook::_displayPhoneBook(void)
 		field = this->_contacts[i].getLastName();
 		std::cout << std::setw(10) << Contact::formatField(field) << "|";
 		field = this->_contacts[i].getNickName();
-		std::cout << std::setw(10) <<Contact::formatField(field) << "|" << std::endl;
+		std::cout << std::setw(10) << Contact::formatField(field) << "|" << std::endl;
 	}
 }
 void PhoneBook::_displayPrompt(std::string prompt)

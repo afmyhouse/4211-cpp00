@@ -6,13 +6,13 @@
 #    By: antoda-s <antoda-s@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 21:23:27 by antoda-s          #+#    #+#              #
-#    Updated: 2024/04/19 15:30:47 by antoda-s         ###   ########.fr        #
+#    Updated: 2024/09/23 16:49:07 by antoda-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # compilation, linking and cleaning commands/flags
 CXX	= c++
-CF	= -Wall -Wextra -Werror -pedantic -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -pedantic -std=c++98
 MKF	= --no-print-directory
 AR	= ar -rcs
 
@@ -61,40 +61,40 @@ all: $(NAME)
 	@printf "\n$(_SUCCESS) $(GRN)$(NAME) executable ready!$(WTH)\n\n"
 
 $(NAME): $(OBJSD) $(TARGET)
-	@printf "\n$(_SUCCESS) $(GRN)$(NAME) objects ready!                $(WTH)\n"
-	@printf "\n$(_INFO) $(CYN)Linking $(NAME) executable...$(WTH)\n"
-	$(CXX) $(CF) $(TARGET) -o $@ -I $(INCSD)
-	@printf "$(GRN)█$(WHT)"
+#	@printf "\n$(_SUCCESS) $(GRN)$(NAME) objects ready!                $(WTH)\n"
+#	@printf "\n$(_INFO) $(CYN)Linking $(NAME) executable...$(WTH)\n"
+	$(CXX) $(CXXFLAGS) $(TARGET) -o $@ -I $(INCSD)
+#	@printf "$(GRN)█$(WHT)"
 
-$(OBJSD)%.o: $(SRCDIR)%.cpp
+$(OBJSD)%.o: $(SRCSD)%.cpp
 #	@printf "$(_INFO) $(CYN)Compiling source files...$(WTH)%-33.33s\r" $@
-	$(CXX) $(CF) -c $< -o $@ -I $(INCSD)
-	@printf "$(YLW)█$(WHT)"
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INCSD)
+#	@printf "$(YLW)█$(WHT)"
 
 $(OBJSD):
 	@mkdir -p $(OBJSD)
-	@printf "\n$(_INFO) $(CYN)Compiling source files...$(WTH)\n"
+#	@printf "\n$(_INFO) $(CYN)Compiling source files...$(WTH)\n"
 
 leaks:
 	$(LEAKS) $(LF)
-	@printf "$(GRN)Leaks log ready! Check valgrind-out.txt $(WTH)\n\n"
+#	@printf "$(GRN)Leaks log ready! Check valgrind-out.txt $(WTH)\n\n"
 
 cleanleaks:
 	@$(RM) $(LEAKS_FILE)
 
 clean:
-	@printf "\n$(YLW)Cleaning all object files from project...$(WTH)\n"
+#	@printf "\n$(YLW)Cleaning all object files from project...$(WTH)\n"
 	@$(RM) -rf $(OBJS)
 	@$(RM) -rf $(OBJSD)
-	@printf "$(GRN)All object files removed!$(WTH)\n\n"
+#	@printf "$(GRN)All object files removed!$(WTH)\n\n"
 
 fclean: clean
-	@printf "\n$(YLW)Cleaning $(NAME) and additional files...$(WTH)\n"
+#	@printf "\n$(YLW)Cleaning $(NAME) and additional files...$(WTH)\n"
 	@$(RM) -rf $(NAME)
-	@printf "$(GRN)$(NAME) and additional files removed!$(WTH)\n\n"
-	@printf "$(YLW)Cleaning Leaks log file.$(WTH)\n"
+#	@printf "$(GRN)$(NAME) and additional files removed!$(WTH)\n\n"
+#	@printf "$(YLW)Cleaning Leaks log file.$(WTH)\n"
 	@make -s cleanleaks
-	@printf "$(GRN)Leaks log file deleted.$(WTH)\n\n"
+#	@printf "$(GRN)Leaks log file deleted.$(WTH)\n\n"
 
 re: fclean all
 
