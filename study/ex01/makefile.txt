@@ -1,20 +1,5 @@
+
 # compilation, linking and cleaning commands/flags
-CXX = c++
-CXXFLAGS = -Wextra -Werror -Wall -std=c++98 -g -pedantic
-MKF = --no-print-directory
-AR = ar -rcs
-RM = rm -rf
-
-# sources, objects and includes folders
-SRCSD = sources/
-INCSD = includes/
-SUBSD = ./
-OBJSD = build/
-VPATH = $(SRCSD) $(addprefix $(SRCSD), $(SUBSD))
-
-# files
-NAME = phonebook
-FILES =  # compilation, linking and cleaning commands/flags
 CXX = c++
 CXXFLAGS = -Wextra -Werror -Wall -std=c++98 -g -pedantic
 MKF = --no-print-directory
