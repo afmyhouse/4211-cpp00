@@ -1,3 +1,5 @@
+#ifndef ACCOUNT_HPP
+# define ACCOUNT_HPP
 
 class Account
 {
@@ -11,13 +13,12 @@ class Account
 
 		static int getNbAccounts(void);
 		static int getTotalAmount(void);
-		static int getNbDepositis(void);
+		static int getNbDeposits(void);
 		static int getNbWithdrawals(void);
 
-		static void displayAccountInfos(void);
+		static void displayAccountsInfos(void);
 
 		void makeDeposit(int amount);
-		bool makeWithdrawal(int withdrawal);
 		bool makeWithdrawal(int withdrawal);
 		int checkAmount(void) const;
 		void displayStatus(void) const;
@@ -29,6 +30,8 @@ class Account
 		static int _totalNbDeposits;
 		static int _totalNbWithdrawals;
 
+		static void _displayTimestamp(void);
+
 		int _accountIndex;
 		int _amount;
 		int _nbDeposits;
@@ -37,3 +40,5 @@ class Account
 		Account(void);
 
 };
+
+#endif

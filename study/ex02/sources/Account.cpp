@@ -8,20 +8,6 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-Account :: Account() {}
-
-Account :: Account(const Account& srcClass) {
-	*this = srcClass;
-}
-
-Account& Account :: operator=(const Account& srcClass) {
-	if (this != &srcClass)
-		*this = srcClass;
-	return (*this);
-}
-
-Account :: ~Account() {}
-
 int Account::getNbAccounts() {
 	return (_nbAccounts);
 }
@@ -91,9 +77,30 @@ bool Account::makeWithdrawal(int withdrawal) {
 		std::cout << withdrawal
 				  << ";amount:" << _amount
 				  << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
+		return (true);
 	} else {
-		std::cout << "refused" << std::endl;
+		return (std::cout << "refused" << std::endl, false);
 	}
 }
-// [19920104_091532] index:0;amount:42;created
-// [19920104_091532] index:0;amount:47;deposits:1;withdrawals:0
+
+void Account::displayStatus() const {
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex
+			  << ";amount:" << _amount
+			  << ";deposits:" << _nbDeposits
+			  << ";withdrawals:" << _nbWithdrawals << std::endl;
+}
+
+void Account::_displayTimestamp() {
+	std::time_t now = time(0);
+	std::tm *ltm = localtime(&now);
+	std::cout << "["
+			  << 1900 + ltm->tm_year
+			  << std::setw(2) << std::setfill('0') << 1 + ltm->tm_mon
+			  << std::setw(2) << std::setfill('0') << ltm->tm_mday
+			  << "_"
+			  << std::setw(2) << std::setfill('0') << ltm->tm_hour
+			  << std::setw(2) << std::setfill('0') << ltm->tm_min
+			  << std::setw(2) << std::setfill('0') << ltm->tm_sec
+			  << "] ";
+}
